@@ -4,18 +4,25 @@ const PORT=8080;
 
 app.get('/register',(req,res)=>{
   console.log("Accepted");
-  res.send("Registration Successful GET Request");
+  let {username,password}= req.query;
+  res.send(`Registration Successful GET Request, Welcome ${username}!`);
   
 })
 
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
+
 app.post('/register',(req,res)=>{
-  res.send("Registration Successful POST Request");
+  let {username,password}= req.body;
+  res.send(`Registration Successful POST Request, hi ${username}! `);
+
+  
 })
 
 
 
 
 app.listen(PORT,()=>{
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on address http://localhost:${PORT}`);
   
 })
